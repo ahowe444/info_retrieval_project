@@ -1,0 +1,32 @@
+<!doctype html>
+<title>Twitch Rivals</title>
+<html>
+	<link rel="stylesheet" href="{{url_for('static', filename='main2.css') }}" />
+	<body>
+
+		<h2>Welcome to Twitch Rivals</h2>
+		<div>
+		<form action="result" method="post" role="form">
+			  <label for="streamer1">First streamer:</label><br>
+			    <input type="text" id="streamer1" name="streamer1" value="Destiny"><br>
+			      <label for="streamer2">Second streamer:</label><br>
+			        <input type="text" id="streamer2" name="streamer2" value="HasanAbi"><br><br>
+				  <input type="submit" value="Submit">
+		</form> 
+
+
+		{% if not intersect %} 
+		<p>Upon submission, the backend will return a list of streamers that both 
+		your first streamer and your second streamer follow!</p>
+		{% endif %}
+		</div>
+		<div>
+		{% if intersect %}
+		<p> These streamers have {{ length }} users they follow in common! </p>
+		{{ intersect }}
+			<img src = "{{url_for('static', filename='destiny_hasan.png')}}"
+			style="width:100%;"/>
+		{% endif %}
+		</div>
+	</body>
+</html>
